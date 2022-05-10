@@ -2,13 +2,13 @@ from matplotlib import pyplot as plt
 from time import sleep
 import numpy
 
-def pulse_left(x):
+def pulse_left(x):  # 좌측에서 시작하는 파동 이동
  for i in range(101):
   Y[i+x-51] = Y[i+x-51] - k1*numpy.sin(numpy.pi*i/100)
  for i in range(101):
   Y[i+x-50] = Y[i+x-50] + k1*numpy.sin(numpy.pi*i/100)
 
-def pulse_right(x):
+def pulse_right(x):  # 우측에서 시작하는 파동 이동
  for i in range(101):
   Y[500-i-x+51] = Y[500-i-x+51] - k2*numpy.sin(numpy.pi*i/100)
  for i in range(101):
@@ -27,7 +27,7 @@ fig = plt.figure(figsize=(8, 4))
 ax = fig.add_subplot(111)
 ax.set_title('superposition of pulse wave')
 ax.set_xlim(-10, 510)
-if(k1>0.0 and k2>0.0):
+if(k1>0.0 and k2>0.0):  # 그래프 y축 범위 설정
   ax.set_ylim(-(k1+k2)*0.2, (k1+k2)*1.2)
 elif(k1<0.0 and k2>0.0):
   ax.set_ylim(k1*1.2, k2*1.2)
@@ -39,12 +39,12 @@ ax.grid(True)
 wave, = ax.plot(X, Y, color='red', lw=5, zorder=3)
 
 while(1):
- for i in range(101):
+ for i in range(101):  # 그래프 초기화
   Y[i] = k1*numpy.sin(numpy.pi*i/100)
  for i in range(101):
   Y[500-i] = k2*numpy.sin(numpy.pi*i/100)
 
- for i in range(51, 451):
+ for i in range(51, 451):  # 파동 이동 및 이미지 출력
   pulse_left(i) 
   pulse_right(i)
   wave.set_ydata(Y)
