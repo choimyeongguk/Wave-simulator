@@ -18,14 +18,15 @@ X = []
 Y = []
 k1 = float(input('좌측 파동의 높이 : '))
 k2 = float(input('우측 파동의 높이 : '))
-for i in range(0, 401):
+for i in range(0, 301):
  X.append(i)
  Y.append(0)
 
 plt.ion()
+plt.style.use('bmh')
 fig = plt.figure(figsize=(6.4, 4))
 ax = fig.add_subplot(111)
-ax.set_title('superposition of pulse wave')
+ax.set_title('superposition of pulse wave', fontsize=20)
 ax.set_xlim(-10, 310)
 if(k1>0.0 and k2>0.0):  # 그래프 y축 범위 설정
   ax.set_ylim(-(k1+k2)*0.2, (k1+k2)*1.2)
